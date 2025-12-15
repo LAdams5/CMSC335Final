@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title><%= city %></title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1><%= city %></h1>
+        
+        <% if (weather) { %>
+            <div>
+                <h2>Current Weather</h2>
+                <img src="https://openweathermap.org/img/wn/<%= weather.icon %>@2x.png" alt="Weather icon">
+                <p style="font-size: 2em; font-weight: bold; color: #1976d2;"><%= weather.temperature %>°F</p>
+                <p style="font-size: 1.2em; text-transform: capitalize;"><%= weather.description %></p>
+                <p>Humidity: <%= weather.humidity %>% | Wind Speed: <%= weather.windSpeed %> mph</p>
+            </div>
+        <% } %>
+        
+        <p>
+            <img src="images/<%= image %>" alt="<%= city %>" style = "width: 40%; height: auto;">
+        </p>
+
+        <h2>Reviews for <%= city %></h2>
+        <div id="reviewsContainer">
+            <p>Loading reviews...</p>
+        </div>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', async function() {
+                const cityName = '<%= city %>';
+                const reviewsContainer = document.getElementById('reviewsContainer');
+                
+                try {
+                    const response = await fetch(`/api/reviews/${encodeURIComponent(cityName)}`);
+                    const reviews = await response.json();
+                    
+                    if (reviews.length === 0) {
+                        reviewsContainer.innerHTML = '<p>No reviews yet for ' + cityName + '. Be the first to review on the <a href="/">homepage</a>!</p>';
+                    } else {
+                        let reviewsHTML = '';
+                        reviews.forEach(review => {
+                            const date = review.createdAt ? new Date(review.createdAt).toLocaleDateString() : 'N/A';
+                            reviewsHTML += `
+                                <div">
+                                    <h3>${review.rating}/5 ${'⭐'.repeat(review.rating)}</h3>
+                                    <p>${review.comment}</p>
+                                </div>
+                            `;
+                        });
+                        reviewsContainer.innerHTML = reviewsHTML;
+                    }
+                } catch (error) {
+                    console.error('Error loading reviews:', error);
+                    reviewsContainer.innerHTML = '<p>Error loading reviews. Please try again later.</p>';
+                }
+            });
+        </script>
+    </body>
+</html>

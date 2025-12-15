@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cities of The United States</title>
+    <style>
+        @import url('style.css');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+    </style>
+    <link rel="icon" href="favicon.png" type="image/png">
+</head> 
+
+<body>
+    <header>
+        Cities of The United States!
+    </header>
+    <h2>View Reviews For A City By Clicking The Buttons Below!!</h2>
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+        <button onclick="window.location.href='/newyork'">
+            New York
+        </button>
+        <button onclick="window.location.href='/miami'">
+            Miami
+        </button>
+        <button onclick="window.location.href='/seattle'">
+            Seattle
+        </button>
+        <button onclick="window.location.href='/pierre'">
+            Pierre
+        </button>
+    </div>
+    <h2>Submit a Review</h2>
+        <form action="/submit-review" method="POST" class="review-form" id="reviewForm">
+            <label for="city">City:</label>
+            <select name="city" id="city" required>
+                <option value="New York">New York</option>
+                <option value="Miami">Miami</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Pierre">Pierre</option>
+            </select>
+
+            <label for="rating">Rating:</label>
+            <select name="rating" id="rating" required>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select><br><br>
+
+            <label for="comment">Comment:</label><br>
+            <textarea name="comment" id="comment" rows="5" cols="50" required></textarea><br><br>
+
+            <input type="submit" value="Submit Review">
+            <input type="reset" value="Clear">
+        </form>
+
+    <br><br>
+
+    <div>
+        <button id="deleteAllBtn">
+            Delete All Reviews
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('deleteAllBtn').addEventListener('click', async function() {
+            try {
+                const response = await fetch('/delete-all-reviews', {
+                    method: 'POST'
+                });
+                const result = await response.json();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+    </script>
+
+</body>
