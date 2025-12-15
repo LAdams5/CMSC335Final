@@ -1,13 +1,13 @@
-**Submitted By: ** William Adams
+**Submitted By:** William Adams
 
-**Group Members: ** William Adams
+**Group Members:** William Adams
 
-**App Description: ** Allows users to review cities and see other's reviews
+**App Description:** Allows users to review cities and see other's reviews
 
-**Youtube Video Link: **[https://www.youtube.com/watch?v=STh6ZUXWbX0](https://www.youtube.com/watch?v=STh6ZUXWbX0)
+**Youtube Video Link:** [https://www.youtube.com/watch?v=STh6ZUXWbX0](https://www.youtube.com/watch?v=STh6ZUXWbX0)
 
-**API Info: ** Open Weather [https://openweathermap.org/](https://openweathermap.org/)
+**API Info:** Open Weather - [https://openweathermap.org/](https://www.openweathermap.org/)
 
-**Contact Email: ** ladams5@terpmail.umd.edu
+**Contact Email:** ladams5@terpmail.umd.edu
 
-** Deployed App Link: **
+**Deployed App Link:** [https://cmsc335final-zhz7.onrender.com/](https://cmsc335final-zhz7.onrender.com/)
